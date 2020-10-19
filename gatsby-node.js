@@ -39,7 +39,7 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       if (data && data.portfolio) {
-        const component = path.resolve("./src/templates/portfolio-item.jsx")
+        const component = path.resolve("./src/templates/portfolio-item.tsx")
         data.portfolio.nodes.map(({ slug }) => {
           createPage({
             path: `/${slug}`,

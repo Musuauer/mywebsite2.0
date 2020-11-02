@@ -26,7 +26,6 @@ module.exports = {
     author: `@johndoe`,
   },
   plugins: [
-    `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-contentful`,
@@ -45,12 +44,6 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: "gatsby-plugin-mailchimp",
-      options: {
-        endpoint: process.env.MAILCHIMP_ENDPOINT,
-      },
-    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

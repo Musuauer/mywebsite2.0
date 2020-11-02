@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from "react"
 import "typeface-inter"
 import "../styles/style.css"
@@ -13,11 +12,6 @@ const Layout = ({ children }) => {
       <Footer />
     </>
   )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  isHome: PropTypes.bool,
 }
 
 export default Layout

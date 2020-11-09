@@ -10,10 +10,9 @@ import Layout from "../layouts/Layout"
 export default props => {
   const {
     description,
-    gallery,
-    name,
-    related,
-    summary,
+    images,
+    title,
+    relatedProjects,
     thumbnail,
     url,
   } = props.data.item
@@ -21,29 +20,26 @@ export default props => {
   return (
     <Layout>
       <SiteMetadata
-        title={name}
-        description={summary}
-        image={thumbnail.localFile.publicURL}
+        title={title}
+        description={description}
+        image={thumbnail.publicURL}
       />
       <div className="bg-gray-0 py-12 lg:py-16">
         <div className="container">
           <div className="flex flex-wrap">
             <div className="w-full lg:w-2/3 pb-8">
-              {gallery && gallery.length === 1 && (
+              {images && images.length === 1 && (
                 <Img
-                  fluid={gallery[0].localFile.childImageSharp.fluid}
-                  alt={name}
+                  fluid={images[0].fluid}
+                  alt={title}
                 />
               )}
-              {gallery && gallery.length > 1 && <Carousel images={gallery} />}
+              {images && images.length > 1 && <Carousel images={images} />}
             </div>
             <div className="w-full lg:w-1/3 lg:pl-8 xl:pl-12">
               <h1 className="text-3xl leading-tight font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-1">
-                {name}
+                {title}
               </h1>
-              <h2 className="text-xl leading-tight font-semibold tracking-tight text-blue-600 sm:text-2xl">
-                {summary}
-              </h2>
               {description && (
                 <div className="my-4 text-base text-gray-700 whitespace-pre-line">
                   {description.description}
@@ -58,14 +54,14 @@ export default props => {
           </div>
         </div>
       </div>
-      {related && (
+      {relatedProjects && (
         <div className="bg-gray-100 py-12 lg:py-16">
           <div className="container">
             <h2 className="text-3xl sm:text-4xl leading-tight font-extrabold tracking-tight text-gray-900 mb-8">
               You may also like
             </h2>
           </div>
-          <Cards items={related} hideLastItemOnMobile={true} />
+          <Cards items={relatedProjects} hideLastItemOnMobile={true} />
         </div>
       )}
     </Layout>
@@ -73,12 +69,12 @@ export default props => {
 }
 
 export const query = graphql`
-  query PortfolioItemQUery($slug: String!) {
-    item: contentfulPortfolio(slug: { eq: $slug }) {
+  query ProjectItemQUery($slug: String!) {
+    item: contentfulProject(slug: { eq: $slug }) {
       description {
         description
       }
-      gallery {
+      images {
         id
         localFile {
           childImageSharp {
@@ -87,19 +83,17 @@ export const query = graphql`
             }
           }
         }
-        title
       }
-      name
-      related {
-        ...PortfolioCard
+      title
+      relatedProjects {
+        ...ProjectCard
       }
-      summary
       thumbnail {
         localFile {
           publicURL
         }
       }
-      url
+      slug
     }
   }
 `

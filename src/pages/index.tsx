@@ -27,9 +27,9 @@ export default IndexPage
 
 export const query = graphql`
   query HomeQuery {
-    portfolio: allContentfulPortfolio {
+    portfolio: allContentfulProject {
       nodes {
-        ...PortfolioCard
+        ...ProjectCard
       }
     }
   }

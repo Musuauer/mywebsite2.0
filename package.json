@@ -53,7 +53,7 @@
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "postinstall": "node ./bin/hello.js",
-    "start": "npm run develop",
+    "start": "gatsby develop",
     "serve": "gatsby serve",
     "setup": "node ./bin/setup.js",
     "clean": "gatsby clean"

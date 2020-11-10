@@ -1,25 +1,25 @@
 const path = require(`path`)
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-  const typeDefs = `
-    type contentfulPortfolioDescriptionTextNode implements Node {
-      description: String
-    }
-    type ContentfulPortfolio implements Node {
-      description: contentfulPortfolioDescriptionTextNode
-      gallery: [ContentfulAsset]
-      id: ID!
-      name: String!
-      related: [ContentfulPortfolio]
-      slug: String!
-      summary: String!
-      thumbnail: ContentfulAsset
-      url: String
-    }
-  `
-  createTypes(typeDefs)
-}
+// exports.createSchemaCustomization = ({ actions }) => {
+//   const { createTypes } = actions
+//   const typeDefs = `
+//     type contentfulProjectDescriptionTextNode implements Node {
+//       description: String
+//     }
+//     type ContentfulProject implements Node {
+//       id: ID!
+//       title: String!
+//       order: String!
+//       label: String!
+//       description: contentfulProjectDescriptionTextNode
+//       thumbnail: [ContentfulAsset]
+//       images: [ContentfulAsset]
+//       relatedProjects: [ContentfulProject]
+//       slug: String!
+//     }
+//   `
+//   createTypes(typeDefs)
+// }
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -27,7 +27,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        portfolio: allContentfulPortfolio {
+        project: allContentfulProject {
           nodes {
             slug
           }
@@ -38,9 +38,9 @@ exports.createPages = ({ graphql, actions }) => {
         reject(errors)
       }
 
-      if (data && data.portfolio) {
-        const component = path.resolve("./src/templates/portfolio-item.tsx")
-        data.portfolio.nodes.map(({ slug }) => {
+      if (data && data.project) {
+        const component = path.resolve("./src/templates/project-item.tsx")
+        data.project.nodes.map(({ slug }) => {
           createPage({
             path: `/${slug}`,
             component,

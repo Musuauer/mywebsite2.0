@@ -1,7 +1,8 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
 export const useSiteInfoQuery = () => {
-  const { contentfulSiteInfo } = graphql`
+    const { contentfulWebsiteInfo } = useStaticQuery(
+        graphql`
     query HelmetQuery {
       contentfulWebsiteInfo {
         siteTitle
@@ -22,7 +23,7 @@ export const useSiteInfoQuery = () => {
         }
       }
     }
-  `
-
-  return contentfulSiteInfo
+    `
+    )
+    return contentfulWebsiteInfo
 }

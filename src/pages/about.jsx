@@ -1,0 +1,32 @@
+import { graphql } from 'gatsby'
+import React from 'react'
+import Layout from '../layouts/Layout'
+import SiteMetadata from '../components/SiteMetadata'
+import { useSiteInfoQuery } from '../queries/useSiteInfoQuery'
+
+const AboutPage = ( { data } ) => {
+    const { siteDescription } = useSiteInfoQuery()
+
+    return (
+        <Layout>
+            <SiteMetadata title='About' description={ siteDescription } />
+
+            <div>
+                { data.contentfulAbout.bio.bio }
+            </div>
+        </Layout>
+    )
+}
+
+export default AboutPage
+
+export const query = graphql`
+  query {
+    contentfulAbout {
+      bio {
+        bio
+      }
+    }
+  }
+
+`

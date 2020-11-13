@@ -1,8 +1,10 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import { FaFacebook, FaInstagram, FaTwitter, FaPinterest } from 'react-icons/fa'
+import { useSiteInfoQuery } from '../queries/useSiteInfoQuery'
 
 const Footer = () => {
+    const { siteTitle } = useSiteInfoQuery()
     const {
         site: {
             meta: { links },
@@ -40,7 +42,7 @@ const Footer = () => {
             </ul>
             <div className='mt-8 md:mt-0 md:order-1'>
                 <p className='text-center text-sm md:text-base text-gray-700'>
-          &copy; 2020 John Doe. All rights reserved.
+          &copy; 2020 { siteTitle }. All rights reserved.
                 </p>
             </div>
         </div>
@@ -49,15 +51,15 @@ const Footer = () => {
 
 const FooterLink = ( { href, label, icon: Icon } ) => {
     return (
-        <li className='inline-block pl-6'>
+        <li className=''>
             <a
               href={ href }
               target='_blank'
               rel='noreferrer noopener'
-              className='text-gray-500 hover:text-blue-600 transition duration-150 ease-in-out'
+              className=''
             >
-                <span className='sr-only'>{label}</span>
-                <Icon className='w-5 h-5 fill-current' />
+                <span className=''>{label}</span>
+                <Icon className='' />
             </a>
         </li>
     )

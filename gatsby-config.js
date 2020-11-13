@@ -11,8 +11,9 @@ if ( !CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN ) {
 module.exports = {
     siteMetadata: {
         menu: [
-            { name: 'Home', to: '/' },
+            { name: 'Projects', to: '/' },
             { name: 'About', to: '/about' },
+            { name: 'Contact', to: '/contact' },
         ],
         links: {
             facebook: 'https://www.facebook.com/',
@@ -21,9 +22,9 @@ module.exports = {
             twitter: 'https://twitter.com/',
         },
         locale: 'en',
-        title: 'Guillermo Gudiño',
-        description: 'Artist website of Guillermo Gudiño',
-        author: '@musuauer',
+        // title: 'Guillermo Gudiño',
+        // description: 'Artist website of Guillermo Gudiño',
+        // author: '@musuauer',
     },
     plugins: [
         'gatsby-plugin-postcss',
@@ -40,7 +41,7 @@ module.exports = {
             resolve: 'gatsby-source-filesystem',
             options: {
                 name: 'images',
-                path: `${ __dirname }/src/images`,
+                path: `${ __dirname }/src/assets/images`,
             },
         },
         'gatsby-transformer-sharp',

@@ -2,12 +2,17 @@ import Img from 'gatsby-image'
 import { graphql, Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { css, cx } from 'emotion'
 
 const Card = ( props ) => {
     const { title, slug, description, thumbnail } = props
 
+    const stylez = css`
+        font-weight: 400;
+    `
+
     return (
-        <div className=''>
+        <div className={ cx( stylez ) }>
             <Link to={ `/${ slug }` }>
                 <div className=''>
                     <Img fluid={ thumbnail.localFile.childImageSharp.fluid } alt={ title } />

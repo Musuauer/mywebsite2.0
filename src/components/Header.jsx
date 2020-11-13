@@ -1,10 +1,12 @@
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import React, { useState } from 'react'
 import MenuMobile from './MenuMobile'
-import { FaBars } from 'react-icons/fa'
+import { css, cx } from 'emotion'
+import { useTheme } from '@emotion/react'
+// import { FaBars } from 'react-icons/fa'
 
 const Header = () => {
-    const [ isMenuOpen, setIsMenuOpen ] = useState( false )
+    // const [ isMenuOpen, setIsMenuOpen ] = useState( false )
 
     const { site } = useStaticQuery( graphql`
     query {
@@ -19,39 +21,67 @@ const Header = () => {
     }
   ` )
 
+    const theme = useTheme()
+
+    const stylez = css`
+      .header {
+        margin-bottom: 2rem;
+      }
+      .navi {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .menu_desktop {
+          .menu_desktop_link {
+            margin-left: 2rem;
+          }
+        }
+      }
+      .owner_name {
+        font-family: ${ theme.fonts.secondary };
+      }
+  `
+
     return (
-        <div className='container pt-6 pb-12 md:pt-12'>
-            <div className='flex justify-between items-center'>
+        <div className={ cx( stylez, 'header' ) }>
+
+            <div className='navi'>
                 <Link to='/'>
-                    <img alt='Logo' className='w-24 md:w-32' src='logo.svg' />
+                    {/* <img alt='Logo' className='' src='logo.svg' /> */}
+                    <h1 className='owner_name'>
+                      Guillermo Gudiño
+                    </h1>
                 </Link>
 
-                <button
-                  className='sm:hidden'
-                  onClick={ () => setIsMenuOpen( true ) }
-                  aria-label='Open Menu'
-                >
-                    <FaBars className='h-6 w-auto text-gray-900 fill-current -mt-1' />
-                </button>
-
-                <div className='hidden sm:block'>
+                <div className='menu_desktop'>
                     {site.data.menu.map( ( link, key ) => (
                         <Link
                           key={ `menu_desktop_link${ key }` }
-                          className='ml-6 sm:ml-8 text-sm sm:text-base font-medium px-px border-b-2 pb-2 border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-200 transition duration-150 ease-in-out'
-                          activeClassName='border-blue-600 text-gray-900 hover:border-blue-600'
+                          className='menu_desktop_link'
+                          activeClassName='menu_desktop_link_active'
                           to={ link.to }
                         >
                             {link.name}
                         </Link>
                     ) )}
                 </div>
+
             </div>
-            <MenuMobile
+
+            {/* <button
+              className='hamburger_menu'
+              onClick={ () => setIsMenuOpen( true ) }
+              aria-label='Open Menu'
+            >
+                <FaBars className='hamburger_icon' />
+            </button> */}
+
+            {/* <MenuMobile
               isOpen={ isMenuOpen }
               setIsOpen={ setIsMenuOpen }
               links={ site.data.menu }
-            />
+            /> */}
+
         </div>
     )
 }

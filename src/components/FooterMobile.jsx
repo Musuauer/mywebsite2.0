@@ -5,29 +5,29 @@ import { useSiteInfoQuery } from '../queries/useSiteInfoQuery'
 
 const Footer = () => {
     const { siteTitle } = useSiteInfoQuery()
-    //   const {
-    //       site: {
-    //           meta: { links },
-    //       },
-    //   } = useStaticQuery( graphql`
-    //   query FooterQuery {
-    //     site {
-    //       meta: siteMetadata {
-    //         links {
-    //           facebook
-    //           instagram
-    //           pinterest
-    //           twitter
-    //         }
-    //       }
-    //     }
-    //   }
-    // ` )
+    const {
+        site: {
+            meta: { links },
+        },
+    } = useStaticQuery( graphql`
+    query FooterQuery {
+      site {
+        meta: siteMetadata {
+          links {
+            facebook
+            instagram
+            pinterest
+            twitter
+          }
+        }
+      }
+    }
+  ` )
 
     return (
-        <div className='footer_desktop'>
+        <div className='footer_mobile'>
             <ul className=''>
-                {/* <FooterLink href={ links.twitter } icon={ FaTwitter } label='Twitter' />
+                <FooterLink href={ links.twitter } icon={ FaTwitter } label='Twitter' />
                 <FooterLink href={ links.facebook } icon={ FaFacebook } label='Facebook' />
                 <FooterLink
                   href={ links.instagram }
@@ -38,10 +38,10 @@ const Footer = () => {
                   href={ links.pinterest }
                   icon={ FaPinterest }
                   label='Pinterest'
-                /> */}
+                />
             </ul>
-            <div className='mt-8 md:mt-0 md:order-1'>
-                <p className='text-center text-sm md:text-base text-gray-700'>
+            <div className=''>
+                <p className=''>
           &copy; 2020 { siteTitle }. All rights reserved.
                 </p>
             </div>

@@ -14,9 +14,6 @@ const ContactPage = ( { data } ) => {
     const { email, instagram } = data.contentfulContact
 
     const stylez = css`
-      .contact_wrapper {
-
-      }
       a {
           display: block;
         }
@@ -27,27 +24,30 @@ const ContactPage = ( { data } ) => {
             <SiteMetadata title='Contact' description={ siteDescription } />
 
             <div className={ cx( stylez, 'contact_wrapper' ) }>
+                <div className='right_container'>
 
-                <div className='email_wrapper'>
-                    <a
-                      href={ `mailto:${ email }` }
-                      className='email'
-                    >
-                        { email }
-                    </a>
+                    <div className='email_wrapper'>
+                        <a
+                          href={ `mailto:${ email }` }
+                          className='email'
+                        >
+                            { email }
+                        </a>
                     e-mail
-                </div>
+                    </div>
 
-                <div className='instagram_wrapper'>
-                    <a
-                      href={ instagram }
-                      target='_blank'
-                      rel='noreferrer noopener'
-                      className='instagram'
-                    >
+                    <div className='instagram_wrapper'>
+                        <a
+                          href={ instagram }
+                          target='_blank'
+                          rel='noreferrer noopener'
+                          className='instagram'
+                        >
                          guillermo_gudino
-                    </a>
+                        </a>
                     instagram
+                    </div>
+
                 </div>
 
             </div>

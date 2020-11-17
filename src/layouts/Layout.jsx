@@ -3,6 +3,7 @@ import 'typeface-inter'
 import { ThemeProvider } from '@emotion/react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import FooterMobile from '../components/FooterMobile'
 import '../styles/style.css'
 import { theme } from '../styles/theme'
 import { injectGlobal } from 'emotion'
@@ -40,7 +41,7 @@ injectGlobal`
 
     html, body {
         font-family: OpenSans, Helvetica, Arial, sans-serif;
-        font-size: ${ theme.fontSizes.small };
+        font-size: ${ theme.fontSize.small };
         color: ${ theme.colors.primary };
         a {
             color: ${ theme.colors.primary };
@@ -54,6 +55,28 @@ injectGlobal`
         width: 80%;
         margin: 2rem auto;
     }
+    .children {
+        margin-top: 8rem;
+    }
+    .footer_desktop {
+        ${ theme.breakpoints.mobile } {
+            display: none;
+        }
+    }
+    .footer_mobile {
+        display: none;
+        ${ theme.breakpoints.mobile } {
+            display: block;
+        }
+    }
+    .contact_wrapper,.about_wrapper {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        .right_container {
+            width: 25%;
+        }
+    }
 
 `
 
@@ -61,9 +84,14 @@ const Layout = ( { children } ) => {
     return (
         <div className='layout'>
             <ThemeProvider theme={ theme }>
+
                 <Header />
-                {children}
+                {/* <HeaderMobile /> */}
+                <div className='children'>
+                    {children}
+                </div>
                 <Footer />
+                <FooterMobile />
             </ThemeProvider>
         </div>
     )

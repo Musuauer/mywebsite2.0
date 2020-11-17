@@ -11,8 +11,12 @@ const AboutPage = ( { data } ) => {
         <Layout>
             <SiteMetadata title='About' description={ siteDescription } />
 
-            <div>
-                { data.contentfulAbout.bio.bio }
+            <div className='about_wrapper'>
+                <div className='right_container'>
+
+                    { data.contentfulAbout.bio.bio }
+
+                </div>
             </div>
         </Layout>
     )

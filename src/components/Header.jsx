@@ -24,21 +24,39 @@ const Header = () => {
     const theme = useTheme()
 
     const stylez = css`
-      .header {
-        margin-bottom: 2rem;
-      }
+        position: fixed;
+        width: 80%;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 2rem auto;
+        z-index: 9;
       .navi {
         display: flex;
         justify-content: space-between;
         align-items: center;
         .menu_desktop {
+
           .menu_desktop_link {
-            margin-left: 2rem;
+            margin-left: 5rem;
+            font-weight: ${ theme.fontWeight.thin };
+            padding: 0 5px;
+            :hover {
+              background-color: black;
+              color: white;
+            }
+          }
+          .menu_desktop_link_active {
+            /* border-bottom: 2px solid black; */
+            background-color: black;
+            color: white;
           }
         }
       }
       .owner_name {
         font-family: ${ theme.fonts.secondary };
+        font-weight: ${ theme.fontWeight.thin };
+
       }
   `
 
@@ -47,7 +65,6 @@ const Header = () => {
 
             <div className='navi'>
                 <Link to='/'>
-                    {/* <img alt='Logo' className='' src='logo.svg' /> */}
                     <h1 className='owner_name'>
                       Guillermo Gudiño
                     </h1>
@@ -67,20 +84,6 @@ const Header = () => {
                 </div>
 
             </div>
-
-            {/* <button
-              className='hamburger_menu'
-              onClick={ () => setIsMenuOpen( true ) }
-              aria-label='Open Menu'
-            >
-                <FaBars className='hamburger_icon' />
-            </button> */}
-
-            {/* <MenuMobile
-              isOpen={ isMenuOpen }
-              setIsOpen={ setIsMenuOpen }
-              links={ site.data.menu }
-            /> */}
 
         </div>
     )
